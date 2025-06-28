@@ -1,0 +1,12 @@
+- hosts: all
+  become: true
+  tasks:
+  - name: remove nginx software
+    apt:
+      name: nginx
+      state: absent
+
+  - name: stopped nginx service
+    service:
+      name: nginx
+      state: stopped

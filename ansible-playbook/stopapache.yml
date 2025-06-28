@@ -1,0 +1,12 @@
+- hosts: webservers
+  become: true
+  tasks:
+  - name: remove apache software
+    apt:
+      name: apache2
+      state: absent
+
+  - name: stopped apache service
+    service:
+      name: apache2
+      state: stopped
