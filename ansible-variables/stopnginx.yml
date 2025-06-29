@@ -1,0 +1,22 @@
+- hosts: all
+  become: true
+  vars:
+    appname: nginx
+    appstatus: yes
+    running: absent
+    servicestate: stopped
+  tasks:
+  - name: Update and upgrade apt packages
+    apt:
+      upgrade: "{{appstatus}}"
+      update_cache: "{{appstatus}}"
+      
+  - name: installing "{{appname}}" software
+    apt:
+      name: "{{appname}}"
+      state: "{{running}}"
+
+  - name: start "{{appname}}" service
+    service:
+      name: "{{appname}}"
+      state: "{{servicestate}}"
